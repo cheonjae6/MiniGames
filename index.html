@@ -4,112 +4,72 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mini Ganes</title>
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="second.css" />
+    <title>Mini Games</title>
+    <link rel="stylesheet" href="./all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div class="container">
       <header>
         <div class="logo">
           <i class="fas fa-gamepad"></i>
-          <p>Mini Games</p>
+          <p style="margin-right: 32px">Mini Games</p>
         </div>
         <ul class="navbar">
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contacts</a></li>
-          <li><a href="#">Offers</a></li>
-          <li>
-            <a href="./Mini-Game-main/index.html" target="_blank"
-              >Old Version</a
-            >
-          </li>
+          <li><a href="#Home" class="active">Home</a></li>
+          <li><a href="#Games">Games</a></li>
+          <li><a href="#AboutUs">About Us</a></li>
+
+          <li><a></a></li>
+          <!-- dummy -->
+          <li><a href="#LeaderBoard">LeaderBoard</a></li>
         </ul>
-        <button type="button" id="btn">
-          <i class="fas fa-play"></i>PLAY NOW
+        <button type="button" id="btn" style="text-align: right">
+          <span>OLD Version</span>
         </button>
       </header>
 
-      <div class="content-wrapper">
+      <div id="Home" class="content-wrapper">
         <video autoplay muted loop id="myVideo">
           <source src="./images/bg.mp4" type="video/mp4" />
           Your browser does not support HTML5 video.
         </video>
 
         <div class="content-desc">
-          <h1>Mini Games / Sejong University</h1>
+          <h1>Mini Games</h1>
+          <h2 style="margin-bottom: 16px">
+            <span
+              style="padding: 4px; border-radius: 8px; margin-right: 8px; border: 2px solid #fec53a"
+              >Group 4</span
+            >Web programming Group Project at Sejong University
+          </h2>
+
+          <p>Enjoy playing free mini games while you are free.</p>
           <p>
-            Final project. <span>Team 4 </span> Enjoy plyaing free mini games
-            while you are free.
-          </p>
-          <p>
-            Our Top Players are waiting for your challenge, click the button
-            below to get started.
+            Our Top Players are waiting for your challenge, click the button below to get started.
           </p>
 
-          <button id="btn2">Challenge YourSelf Now</button>
+          <a href="#Games" id="btn2">Challenge YourSelf Now</a>
         </div>
       </div>
     </div>
 
-    <div class="logo-section">
+    <div id="Games" class="logo-section">
       <i class="fas fa-gamepad"></i>
-      <h1>The Game Zone</h1>
+      <h1>Games</h1>
     </div>
-
-    <section class="section-1">
-      <div class="section-1-wrapper">
-        <h1 style="padding: 50px 100px">ACTION GAMES</h1>
-        <br />
-        <div class="section-1-img">
-          <img src="./images/a1.png" alt="" />
-          <img src="./images/a2.png" alt="" />
-          <img src="./images/a3.png" alt="" />
-        </div>
-      </div>
-
-      <div class="game-categories">
-        <h1>Comming Soon...</h1>
-        <div class="game-wrapper">
-          <a href="#"><div class="gw gw-1"></div></a>
-          <a href="#"><div class="gw gw-2"></div></a>
-          <a href="#"><div class="gw gw-3"></div></a>
-          <a href="#"><div class="gw gw-4"></div></a>
-          <a href="#"><div class="gw gw-5"></div></a>
-        </div>
-
-        <div class="game-wrapper left">
-          <a href="#"><div class="gw gw-6"></div></a>
-          <a href="#"><div class="gw gw-7"></div></a>
-          <a href="#"><div class="gw gw-8"></div></a>
-          <a href="#"><div class="gw gw-9"></div></a>
-          <a href="#"><div class="gw gw-10"></div></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- New section is down here below -->
 
     <section class="section-2">
+      <!-- 1st row start -->
       <div class="myGames">
         <div class="my-card">
           <div class="card-content">
             <div class="img-place">
-              <img
-                class="card-img"
-                src="./Mini-Game-main/GameImages/Aim-practice_image.jpeg"
-                alt=""
-              />
+              <img class="card-img" src="./" alt="" />
             </div>
             <div class="card-text">
               <h5>Aim Practice</h5>
-              <a
-                href="./games/Aim-Practice/Aimpractice/index.html"
-                target="_blank"
-                ><button class="btn">Play</button></a
-              >
+              <a href="." target="_blank"><button class="btn">Play</button></a>
             </div>
           </div>
         </div>
@@ -117,17 +77,13 @@
         <div class="my-card">
           <div class="card-content">
             <div class="img-place">
-              <img
-                class="card-img"
-                src="./Mini-Game-main/GameImages/GuessNuberGame_image.png"
-                alt=""
-              />
+              <img class="card-img" src="./" alt="" />
             </div>
             <div class="card-text">
               <h5>Guessing Number</h5>
-              <a href="./games/Guessing_Number/index.html" target="_blank"
-                ><button class="btn">Play</button></a
-              >
+              <a href="./games/Guessing_Number/index.html" target="_blank">
+                <button class="btn">Play</button>
+              </a>
             </div>
           </div>
         </div>
@@ -135,34 +91,11 @@
         <div class="my-card">
           <div class="card-content">
             <div class="img-place">
-              <img
-                class="card-img"
-                src="./Mini-Game-main/GameImages/DiceGame.png"
-                alt=""
-              />
+              <img class="card-img" src="./" alt="" />
             </div>
             <div class="card-text">
-              <h5>Dice game</h5>
-              <a href="./games/DiceGame/dice-game.html" target="_blank"
-                ><button class="btn">Play</button></a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="my-card">
-          <div class="card-content">
-            <div class="img-place">
-              <img
-                class="card-img"
-                src="./games/snakeGame/snakeimage.jpg"
-                alt=""
-              />
-            </div>
-            <div class="card-text">
-              <h5>Snake game</h5>
-              <a href="./games/snakeGame/index.html" target="_blank"
-                ><button class="btn">Play</button></a
-              >
+              <h5>Dice Game</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
             </div>
           </div>
         </div>
@@ -170,72 +103,130 @@
         <div class="my-card">
           <div class="card-content">
             <div class="img-place">
-              <img
-                class="card-img"
-                src="./Mini-Game-main/GameImages/finding_mine.jpeg"
-                alt=""
-              />
-            </div>
-            <div class="card-text">
-              <h5>Finding Mine</h5>
-              <a href="./games/Finding_Mine/index.html" target="_blank"
-                ><button class="btn">Play</button></a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="my-card">
-          <div class="card-content">
-            <div class="img-place">
-              <img
-                class="card-img"
-                src="./Mini-Game-main/GameImages/firevoid_logo_01.jpeg"
-                alt=""
-              />
+              <img class="card-img" src="./" alt="" />
             </div>
             <div class="card-text">
               <h5>Firevoid</h5>
-              <a href="./games/FireVoid/index.html" target="_blank"
-                ><button class="btn">Play</button></a
-              >
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-card">
+          <div class="card-content">
+            <div class="img-place">
+              <img class="card-img" src="./" alt="" />
+            </div>
+            <div class="card-text">
+              <h5>Finding Mine</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
             </div>
           </div>
         </div>
       </div>
+      <!-- 1st row end -->
+      <!-- 2nd row start -->
+      <div class="myGames">
+        <div class="my-card">
+          <div class="card-content">
+            <div class="img-place">
+              <img class="card-img" src="./" alt="" />
+            </div>
+            <div class="card-text">
+              <h5>Snake Game</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-card">
+          <div class="card-content">
+            <div class="img-place">
+              <img class="card-img" src="./" alt="" />
+            </div>
+            <div class="card-text">
+              <h5>Whack a Mozzie</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-card">
+          <div class="card-content">
+            <div class="img-place">
+              <img class="card-img" src="./" alt="" />
+            </div>
+            <div class="card-text">
+              <h5>Tic Tac Toe</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-card">
+          <div class="card-content">
+            <div class="img-place">
+              <img class="card-img" src="./" alt="" />
+            </div>
+            <div class="card-text">
+              <h5>Breakout Style</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-card">
+          <div class="card-content">
+            <div class="img-place">
+              <img class="card-img" src="./" alt="" />
+            </div>
+            <div class="card-text">
+              <h5>Puzzle</h5>
+              <a href="./" target="_blank"><button class="btn">Play</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 2nd row end -->
     </section>
 
+    <div id="AboutUs" class="logo-section">
+      <i class="fas fa-users"></i>
+      <h1>About Us : GROUP 4</h1>
+    </div>
+
     <div class="section-3">
-      <h1>Team 4</h1>
       <div class="section-3-wrapper">
         <main class="box-model">
           <div class="box no1">
-            <img src="./images/JeongWon-modified.png" alt="" />
+            <img src="./images/teammembers/JeongWon-modified.png" alt="" />
             <h2>Jeong Won</h2>
             <p>21011697</p>
           </div>
           <div class="box no2">
-            <img src="./images/KimSunCheol.jpg" alt="" />
+            <img src="./images/teammembers/KimSunCheol.jpg" alt="" />
             <h2>Kim Sun Cheol</h2>
             <p>17011581</p>
           </div>
           <div class="box no3">
-            <img src="./images/Rahmonali-modified.png" alt="" />
+            <img src="./images/teammembers/Rahmonali-modified.png" alt="" />
             <h2>Rakhmonali Zamonaliev</h2>
             <p>19012777</p>
           </div>
+        </main>
+        <main class="box-model" style="margin-top: 48px">
           <div class="box no1">
-            <img src="./images/SHERZODBEK.jpeg" alt="" />
+            <img src="./images/teammembers/SHERZODBEK.jpeg" alt="" />
             <h2>Sherzodbek Tuhtaboev</h2>
             <p>19012375</p>
           </div>
           <div class="box no4">
-            <img src="images/LeeWonJin.jpeg" alt="" />
+            <img src="images/teammembers/LeeWonJin.jpeg" alt="" />
             <h2>Lee Won Jin</h2>
             <p>17011573</p>
           </div>
           <div class="box no2">
-            <img src="images/SimHyeongSeop-modified.png" alt="" />
+            <img src="images/teammembers/SimHyeongSeop-modified.png" alt="" />
             <h2>Sim Hyeong Seop</h2>
             <p>15010928</p>
           </div>
@@ -245,56 +236,44 @@
 
     <footer>
       <div class="footer-body">
-        <div class="logo footer-logo">
-          <i class="fas fa-gamepad"></i>
-
-          <a
-            style="text-decoration: none; color: black"
-            href="./Mini-Game-main/index.html"
-            target="_blank"
-            ><h1>Old version of WebSite</h1></a
-          >
+        <div class="footer-logo">
+          <div>
+            <i class="fas fa-gamepad"></i>
+            <span>Mini Games</span>
+          </div>
+          <p style="margin-top: 18px">Sejong University</p>
+          <p>Web Programming Class</p>
+          <p>Group 4</p>
         </div>
         <ul>
-          <h3>Short Links</h3>
-          <li><a href="#">Arcade</a></li>
-          <li><a href="#">War Zone</a></li>
-          <li><a href="#">Fifa Game</a></li>
-          <li><a href="#">Pes 2020</a></li>
-          <li><a href="#">Xbox Game</a></li>
+          <h3>Mid-term Games</h3>
+          <li><a href="#">Aim Practice</a></li>
+          <li><a href="#">Guessing Number</a></li>
+          <li><a href="#">Dice Game</a></li>
+          <li><a href="#">Finding Mine</a></li>
+          <li><a href="#">Firevoid</a></li>
         </ul>
 
         <ul>
-          <h3>Action Games</h3>
-          <li><a href="#">Anpar</a></li>
-          <li><a href="#">BattleField</a></li>
-          <li><a href="#">The Ghost</a></li>
-          <li><a href="#">Fortnite</a></li>
-          <li><a href="#">Cold War</a></li>
+          <h3>Final-term Games</h3>
+          <li><a href="#">Snake Game</a></li>
+          <li><a href="#">Whack a Mozzie</a></li>
+          <li><a href="#">Tic Tac Toe</a></li>
+          <li><a href="#">Breakout Style</a></li>
+          <li><a href="#">Puzzle</a></li>
         </ul>
         <ul>
-          <h3>Get In Touch</h3>
-          <li>
-            <a href="#"><i class="fab fa-facebook"></i>Facebook</a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/zamonaliev.r/?hl=en"
-              ><i class="fab fa-instagram"></i>Instagram</a
-            >
-          </li>
-          <li>
-            <a href="#"><i class="fab fa-twitter"></i>Twitter</a>
-          </li>
-          <li>
-            <a href="#"><i class="fab fa-linkedin"></i>Linkedin</a>
-          </li>
+          <h3>Other Links</h3>
+          <li><a href="#">Leader Board</a></li>
+          <li><a href="">Old Version Site</a></li>
+          <li><a href="#">Github repo</a></li>
         </ul>
       </div>
     </footer>
     <div class="footer-bottom">
       <p>
         Copyright &copy; All Right Reserved | Designed
-        <span>Sejong University</span> 2022
+        <span>Sejong University Students</span> 2022
       </p>
     </div>
   </body>
