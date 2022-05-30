@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Breakout Style</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      canvas {
+        background: #eee;
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #status {
+        width: 480px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #status div {
+        font-size: 24px;
+        padding: 10px 40px;
+        margin-bottom: 16px;
+        text-align: center;
+        border: 2px solid white;
+        border-radius: 20px;
+      }
+      #modal {
+        display: none;
+        /* will be changed to 'flex' When gameover or clear.*/
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 100vh;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 24px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      #modal-noti {
+        margin: 8px;
+        font-size: 12px;
+      }
+      #modal-input {
+        font-size: 24px;
+        background-color: transparent;
+        padding: 0px 2px;
+        text-align: center;
+        border: 1px solid white;
+        border-radius: 8px;
+        color: white;
+        line-height: 40px;
+        vertical-align: baseline;
+      }
+      #modal-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      #modal-restart,
+      #modal-submitbtn {
+        margin-top: 24px;
+        text-decoration: none;
+        color: white;
+        padding: 4px 8px;
+        border: 1px solid white;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: 0.5s background-color;
+        cursor: pointer;
+        vertical-align: baseline;
+      }
+      #modal-restart:hover,
+      #modal-submitbtn:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+      }
+
+      #title {
+        font-family: "Quicksand", sans-serif;
+        margin: 12px;
+        color: #eee;
+        font-size: 64px;
+      }
+      body {
+        height: 100%;
+        background-color: rgba(15, 15, 15, 0.9);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root">
+      <h1 id="title">Breakout Style</h1>
+      <div id="status">
+        <div>score: <span id="score">0</span></div>
+        <div>level: <span id="level">1</span></div>
+      </div>
+      <canvas id="myCanvas" width="480" height="320"></canvas>
+      <div id="modal">
+        <h2 id="modal-title">GAMEOVER</h2>
+        <p id="modal-score" style="margin: 12px">Score : 22</p>
+        <div style="text-align: center">
+          <p style="margin-bottom: 12px">Submit Your Score!</p>
+          <input id="modal-input" placeholder="Write your name here" />
+          <a id="modal-submitbtn">Submit</a>
+        </div>
+        <p id="modal-noti"></p>
+        <a id="modal-restart" href="./breakoutstyle.html"> Restart </a>
+      </div>
+    </div>
+
+    <script>
+      const $modal = {
+        isOpend: false,
+
+        container: document.getElementById("modal"),
+        title: document.getElementById("modal-title"),
+        score: document.getElementById("modal-score"),
+        username: document.getElementById("modal-input"),
+        submitBtn: document.getElementById("modal-submitbtn"),
+        noti: document.getElementById("modal-noti"),
+      };
+
+      $modal.submitBtn.onclick = async (e) => {
+        $modal.noti.textContent = "Please Wait...";
+        $modal.noti.style.color = "orange";
+
+        const requestData = {
+          gamename: "breakoutStyle",
+          username: $modal.username.value,
+          score: score,
+        };
+        const response = await postData(requestData);
+
+        if (response.status === "success") {
+          $modal.noti.textContent = "Submitted Sucessfully!";
+          $modal.noti.style.color = "lightgreen";
+        } else {
+          $modal.noti.textContent = "Something Went Wrong. Please Re try";
+          $modal.noti.style.color = "red";
+        }
+      };
+
+      async function postData(data) {
+        const url =
+          "https://script.google.com/macros/s/AKfycbzl7yTwWaIYtiF1kVcQ6vxtLTAU5v3WPa7j9Cyd1VD6S1QTz97kmTDAiJKToOMP0_G2/exec";
+        let res = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+
+        return res.json();
+      }
+
+      var ANIMATION_REQUEST_ID = "INIT";
+
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      var ballRadius = 10;
+      var x = canvas.width / 2;
+      var y = canvas.height - 30;
+      var dx = 2;
+      var dy = -2;
+      var paddleHeight = 10;
+      var paddleWidth = 75;
+      var paddleX = (canvas.width - paddleWidth) / 2;
+      var rightPressed = false;
+      var leftPressed = false;
+      var brickRowCount = 5;
+      var brickColumnCount = 3;
+      var brickWidth = 75;
+      var brickHeight = 20;
+      var brickPadding = 10;
+      var brickOffsetTop = 30;
+      var brickOffsetLeft = 30;
+      var score = 0;
+      var lives = 1;
+      var result = 0;
+      let level = 1;
+      var bricks = [];
+      let currentScore = document.getElementById("score");
+      let currentLevel = document.getElementById("level");
+
+      for (var c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
+        for (var r = 0; r < brickRowCount; r++) {
+          bricks[c][r] = { x: 0, y: 0, status: 1 };
+        }
+      }
+
+      document.addEventListener("keydown", keyDownHandler, false);
+      document.addEventListener("keyup", keyUpHandler, false);
+      document.addEventListener("mousemove", mouseMoveHandler, false);
+
+      function keyDownHandler(e) {
+        if (e.code == "ArrowRight") {
+          rightPressed = true;
+        } else if (e.code == "ArrowLeft") {
+          leftPressed = true;
+        }
+      }
+      function keyUpHandler(e) {
+        if (e.code == "ArrowRight") {
+          rightPressed = false;
+        } else if (e.code == "ArrowLeft") {
+          leftPressed = false;
+        }
+      }
+      function mouseMoveHandler(e) {
+        var relativeX = e.clientX - canvas.offsetLeft;
+        if (relativeX > 0 && relativeX < canvas.width) {
+          paddleX = relativeX - paddleWidth / 2;
+        }
+      }
+      function collisionDetection() {
+        for (var c = 0; c < brickColumnCount; c++) {
+          for (var r = 0; r < brickRowCount; r++) {
+            var b = bricks[c][r];
+            if (b.status == 1) {
+              if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                dy = -dy;
+                b.status = 0;
+                if (!$modal.isOpend) {
+                  score++;
+                  currentScore.textContent = result + score;
+                }
+                if (score == brickRowCount * brickColumnCount) {
+                  if (!$modal.isOpend) {
+                    result = result + score;
+                    lives++;
+                    level++;
+                    if (level >= 3) {
+                      lives = 3;
+                    }
+                    currentLevel.textContent = level;
+                    score = 0;
+                    for (var c = 0; c < brickColumnCount; c++) {
+                      bricks[c] = [];
+                      for (var r = 0; r < brickRowCount; r++) {
+                        bricks[c][r] = { x: 0, y: 0, status: 1 };
+                      }
+                    }
+                    draw();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      function drawBall() {
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        if (result < 15) {
+          ctx.fillStyle = "#0095DD";
+        } else if (result < 30) {
+          ctx.fillStyle = "#FFFF00";
+        } else if (result < 45) {
+          ctx.fillStyle = "#FF0000";
+        } else if (result < 60) {
+          ctx.fillStyle = "#000000";
+        } else if (result < 75) {
+          ctx.fillStyle = "#03fc0b";
+        }
+        ctx.fill();
+        ctx.closePath();
+      }
+      function drawPaddle() {
+        ctx.beginPath();
+        ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+        if (result < 15) {
+          ctx.fillStyle = "#0095DD";
+        } else if (result < 30) {
+          ctx.fillStyle = "#FFFF00";
+        } else if (result < 45) {
+          ctx.fillStyle = "#FF0000";
+        } else if (result < 60) {
+          ctx.fillStyle = "#000000";
+        } else if (result < 75) {
+          ctx.fillStyle = "#03fc0b";
+        }
+        ctx.fill();
+        ctx.closePath();
+      }
+      function drawBricks() {
+        for (var c = 0; c < brickColumnCount; c++) {
+          for (var r = 0; r < brickRowCount; r++) {
+            if (bricks[c][r].status == 1) {
+              var brickX = r * (brickWidth + brickPadding) + brickOffsetLeft;
+              var brickY = c * (brickHeight + brickPadding) + brickOffsetTop;
+              bricks[c][r].x = brickX;
+              bricks[c][r].y = brickY;
+              ctx.beginPath();
+              ctx.rect(brickX, brickY, brickWidth, brickHeight);
+              if (result < 15) {
+                ctx.fillStyle = "#0095DD";
+              } else if (result < 30) {
+                ctx.fillStyle = "#FFFF00";
+              } else if (result < 45) {
+                ctx.fillStyle = "#FF0000";
+              } else if (result < 60) {
+                ctx.fillStyle = "#000000";
+              } else if (result < 75) {
+                ctx.fillStyle = "#03fc0b";
+              }
+              ctx.fill();
+              ctx.closePath();
+            }
+          }
+        }
+      }
+      function drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: " + score, 8, 20);
+      }
+      function drawLives() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBricks();
+        drawBall();
+        drawPaddle();
+        drawScore();
+        drawLives();
+        collisionDetection();
+
+        if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+          dx = -dx;
+        }
+        if (y + dy < ballRadius) {
+          dy = -dy;
+        } else if (y + dy > canvas.height - ballRadius) {
+          if (x > paddleX && x < paddleX + paddleWidth) {
+            dy = -dy;
+          } else {
+            if (!$modal.isOpend) {
+              lives--;
+            }
+            if (!lives) {
+              if (!$modal.isOpend) {
+                $modal.isOpend = true;
+                result = result + score;
+
+                $modal.container.style.display = "flex";
+                $modal.title.textContent = "GAMEOVER";
+                $modal.score.textContent = `Score : ${result}`;
+              }
+            } else {
+              x = canvas.width / 2;
+              y = canvas.height - 30;
+              dx = 2;
+              dy = -2;
+              paddleX = (canvas.width - paddleWidth) / 2;
+            }
+          }
+        }
+
+        if (rightPressed && paddleX < canvas.width - paddleWidth) {
+          paddleX += 7;
+        } else if (leftPressed && paddleX > 0) {
+          paddleX -= 7;
+        }
+
+        x += dx;
+        y += dy;
+        if (ANIMATION_REQUEST_ID) {
+          ANIMATION_REQUEST_ID = window.requestAnimationFrame(draw);
+        }
+      }
+
+      draw();
+    </script>
+  </body>
+</html>

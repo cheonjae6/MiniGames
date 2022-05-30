@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puzzle</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <header>
+    <a href="./index.html" id="back">BACK</a>
+    <a href="./app.html" id="restart">RESTART</a>
+  </header>
+  <body>
+    <h1 class="title">PUZZLE</h1>
+    <div id="status">
+      <h2>Time left: <span class="play-time">100</span></h2>
+    </div>
+
+    <div class="wrap-all">
+      <ul class="image-container"></ul>
+      <p class="game-text">Complete!</p>
+    </div>
+
+    <div id="modal-container">
+      <div class="modal">
+        <h1>GAME OVER</h1>
+        <p style="font-size: 24px">score: <span id="getYourScore"></span></p>
+        <p style="font-size: 20px; margin-bottom: 16px">Enter your name to submit your score.</p>
+        <div>
+          <input
+            type="text"
+            placeholder="Write your name here!"
+            id="gameover-submit-yourScore-name"
+            value=""
+          />
+          <button id="gameover-submit-yourScore-button">Submit</button>
+        </div>
+        <p id="sendToServer"></p>
+        <nav>
+          <a href="./app.html" id="gameover-restart-button">RESTART</a>
+          <a href="./index.html" id="gameover-backToMain-button">BACK</a>
+        </nav>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

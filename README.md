@@ -1,7 +1,11 @@
 # Minigame Website
 
-Sejong University Web Programming lecture
-Group Project
+Sejong University Web Programming class
+2022-01 Group 4 : Final term group project
 
-<a href='https://www.freepik.com/psd/keyboard-mouse'>Keyboard mouse psd created by Kerfin7 - www.freepik.com</a>
-<a href='https://www.freepik.com/vectors/futuristic-background'>Futuristic background vector created by coolvector - www.freepik.com</a>
+### External Resource
+
+- Google Font
+- Font Awesome
+- [Games background created by Kerfin7 - www.freepik.com](https://www.freepik.com/psd/keyboard-mouse)
+- [AboutUs background created by coolvector - www.freepik.com](https://www.freepik.com/vectors/futuristic-background)
